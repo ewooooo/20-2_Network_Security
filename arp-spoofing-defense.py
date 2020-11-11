@@ -17,12 +17,12 @@ class ArpEntry():
         return '%s: %s' % (self.ip, self.hw_address)
 
 class Spoofing_Defense():
-    def __init__(self):
-        self.entries = []
+
 
     def loop(self):
         end = True
         while end:
+            self.entries = []
             lines = open('/proc/net/arp').readlines()[1:]
             for line in lines:
                 self.entries.append(ArpEntry(line))
