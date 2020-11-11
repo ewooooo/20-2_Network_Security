@@ -21,7 +21,8 @@ class Spoofing_Defense():
         self.entries = []
 
     def loop(self):
-        while True:
+        end = True
+        while end:
             lines = open('/proc/net/arp').readlines()[1:]
             for line in lines:
                 self.entries.append(ArpEntry(line))
@@ -36,7 +37,7 @@ class Spoofing_Defense():
                         for aprs in self.entries:
                             print(aprs)
                         kill_port()
-                        exit()
+                        end = False
                 except: count[i.hw_address]=1
 
 
