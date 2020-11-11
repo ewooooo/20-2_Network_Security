@@ -20,6 +20,7 @@ class Spoofing_Defense():
 
 
     def loop(self):
+        print("start check arp table!")
         end = True
         while end:
             self.entries = []
