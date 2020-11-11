@@ -33,11 +33,12 @@ class Spoofing_Defense():
                 try: 
                     count[i.hw_address] += 1
                     if count.get(i.hw_address) > 1:
+                        end = False
                         print("warning spoofing")
                         for aprs in self.entries:
                             print(aprs)
                         kill_port()
-                        end = False
+                        
                 except: count[i.hw_address]=1
 
 
