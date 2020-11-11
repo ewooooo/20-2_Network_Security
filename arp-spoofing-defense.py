@@ -21,22 +21,23 @@ class Spoofing_Defense():
         self.entries = []
 
     def loop(self):
-        
-        lines = open('/proc/net/arp').readlines()[1:]
-        for line in lines:
-            self.entries.append(ArpEntry(line))
+        while True:
+            lines = open('/proc/net/arp').readlines()[1:]
+            for line in lines:
+                self.entries.append(ArpEntry(line))
 
-        # 중복확인
-        count={}
-        for i in self.entries:
-            try: 
-                count[i.hw_address] += 1
-                if count.get(i.hw_address) > 1:
-                    print("warning spoofing")
-                    for aprs in self.entries:
-                        print(aprs)
-                    kill_port()
-            except: count[i.hw_address]=1
+            # 중복확인
+            count={}
+            for i in self.entries:
+                try: 
+                    count[i.hw_address] += 1
+                    if count.get(i.hw_address) > 1:
+                        print("warning spoofing")
+                        for aprs in self.entries:
+                            print(aprs)
+                        kill_port()
+                        return
+                except: count[i.hw_address]=1
 
 
 if __name__ == "__main__":
