@@ -36,7 +36,7 @@ class Spoofing_Defense():
                         for aprs in self.entries:
                             print(aprs)
                         kill_port()
-                        return
+                        exit()
                 except: count[i.hw_address]=1
 
 
